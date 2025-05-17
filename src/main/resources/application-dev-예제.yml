@@ -1,0 +1,15 @@
+# application.yml 기본값 (+오버라이딩)
+
+# appliction-{profile}.yml 파일은
+# 특정 프로파일(예: dev, prod)이 활성화될 때 해당 환경에 맞는 설정을 정의.
+# application.yml의 기본값을 재정의함.
+
+server:
+  port: 8081
+  servlet:
+    context-path: /dev
+
+# localhost:8081/dev/api/health로 접속 가능
+# 이제는 localhost:8080/api/health 접속 불가능
+
+
