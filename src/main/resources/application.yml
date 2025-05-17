@@ -1,0 +1,41 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /   # 웹 애플리케이션 구분
+
+
+spring:
+  # todo 개발 데이터베이스 연결
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+        ### 개발 초기 단계 사용하는 옵션값
+        # create - 실행될 때마다 스키마 새로 생성. 초기 개발 단계에서 엔티티 변경이 잦고 데이터 유실이 상관없을 때 유용.
+        # create-drop - 애플리케이션 실행시 테이블 생성 후 애플리케이션 종료 시점에 테이블 drop
+        # update - 변경된 스키마 반영
+        ### dev, prod 환경에서 사용하는 옵션값
+        # validate - 애플리케이션 실행 시 엔티티와 테이블 정상 매핑 확인
+        # none - 사용하지 않음
+    show-sql: true    # 콘솔창에 sql 출력.
+    properties:
+      hibernate:
+        format_sql: true  # sql 에쁘게 출력.
+        default_batch_fetch_size: 500  # 일대다 컬렉션 조회 시 성능 최적화.
+          # default_batch-fetch-size 는 N+1문제를 해결하기 위해 연관된 데이터를 In 절을 사용하여 배치로 한번에 가져옴.
+    open-in-view: false   # 영속성 컨텍스트의 생존 범위를 트랜잭션 범위로 한정.
+      # DB 커넥션 유지를 짧게 가져가 커넥션 풀 고갈 위험을 줄이는데 도움이 됨.
+
+  servlet:
+    multipart:
+      max-file-size: 10MB   # 파일 업로드 요청 시 하나의 파일 크기를 10MB 제한
+      max-request-size: 100MB  # 파일 업로드 요청 시 모든 파일 크기합을 100MB 제한
+
+logging:   # 조회값 확인
+  level:
+    org.hibernate.type: trace   # 콘솔창에 조건에 바인딩되는 값 및 조회 결과 출력
