@@ -4,7 +4,7 @@ import com.app.api.exceptiontest.dto.BindExceptionTestDto;
 import com.app.api.exceptiontest.dto.TestEnum;
 import com.app.global.error.ErrorCode;
 import com.app.global.error.exception.BusinessException;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
