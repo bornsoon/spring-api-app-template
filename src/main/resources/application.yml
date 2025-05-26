@@ -36,6 +36,10 @@ spring:
       max-file-size: 10MB   # 파일 업로드 요청 시 하나의 파일 크기를 10MB 제한
       max-request-size: 100MB  # 파일 업로드 요청 시 모든 파일 크기합을 100MB 제한
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 logging:   # 조회값 확인
   level:
     org.hibernate.type: trace   # 콘솔창에 조건에 바인딩되는 값 및 조회 결과 출력
@@ -47,3 +51,18 @@ feign:
       default:
         connectTimeout: 5000  #5초 
         readTimeout: 5000  # 5초
+
+kakao:
+  client:
+    id: ${KAKAO_REST_API}
+    secret: ${KAKAO_SECRET}
+
+token:
+  secret: ENC(u9Csn+Pxr4F1GOAaHZA171GDWr9Ri8sD/cw5rUrQobXeZrFjsNGLpQ==)   # 임의의 문자열
+  access-token-expiration-time: 900000  # 15분 1000(ms) x 60(s) x 15(m)
+  refresh-token-expiration-time: 1209600000  # 2주 1000(ms) x 60(s) x 60(m) x 24(h) x 14(d)
+
+# Configuration 의 VM 옵션 추가 (-Djasypt.password=암호)
+# 사용법 : ENC(암호화된 코드)
+jasypt:
+  password: ${PASSWORD}
